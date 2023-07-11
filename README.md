@@ -22,7 +22,7 @@ With "anomaly scoring" the Azure WAF with newer rulesets attempts to mitigate th
 
 ## Rules that require exclusions
 
-For the easyauth authentication flow, there are 4 rules that will cause requests to be blocked and require policy applied. One matches any percent encoded data, which is part of the `'redir'` param of the callback request, and the other three match base64 encoded data in general, which are used for `'code'` and `'id_token'` in the callback request and the cookie fields `'AppServiceAuthSession'` and `'Nonce'` in subsequent requests.
+For the easyauth authentication flow, there are 4 rules that will cause requests to be blocked and require policy applied. One matches any percent encoded data, which is part of the `'state'` param of the callback request, and the other three match base64 encoded data in general, which are used for `'code'` and `'id_token'` in the callback request and the cookie fields `'AppServiceAuthSession'` and `'Nonce'` in subsequent requests.
 
 
 ### 920230
@@ -33,7 +33,7 @@ Implementation:
 
     Pattern match \%\w at ARGS.
 
-This matches any percent sign with a following character, [%ile](https://en.wiktionary.org/wiki/%25ile) for example.
+This matches any percent sign with a following character, [%ile](https://en.wiktionary.org/wiki/%25ile) for example. The common form of an encoded query string, like `"redir=%2F"` to indicate where to go next as in the auth flow also triggers.
 
 
 ### 942430

@@ -128,7 +128,7 @@ resource wafPolicy 'Microsoft.Network/ApplicationGatewayWebApplicationFirewallPo
         {
           matchVariable: 'RequestArgValues'
           selectorMatchOperator: 'Equals'
-          selector: 'redir'
+          selector: 'state'
           exclusionManagedRuleSets: [
             {
               ruleSetType: 'OWASP'
